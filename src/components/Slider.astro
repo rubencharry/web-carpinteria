@@ -1,0 +1,130 @@
+---
+// Definimos los datos del slider directamente en el componente
+const sliderData = {
+  title: "Nuestros trabajos anteriores",
+  description: "Diseños modernos y funcionales que transformarán tu espacio.",
+  images: [
+    "/img/slider/slider-1.png",
+    "/img/slider/slider-2.png",
+    "/img/slider/slider-3.png",
+  ]
+};
+
+const { title,description, images } = sliderData;
+---
+
+<div class="flex flex-col md:flex-row gap-4 p-4 bg-white rounded-lg shadow-lg max-w-[1500px] mx-auto my-5" id="slider-container">
+  <div class="flex-1 flex flex-col justify-center text-center mb-4 md:mb-0">
+    <h2 class="text-3xl font-bold mb-4">{title}</h2>
+    <p class="text-gray-600 leading-relaxed">{description}</p>
+  </div>
+  
+  <div class="flex-[2] relative">
+    <div class="w-full aspect-[4/3] mb-4 rounded-lg overflow-hidden">
+      <img 
+        src={images[0]} 
+        alt={title} 
+        id="mainImage" 
+        class="w-full h-full object-cover transition-all duration-300"
+      />
+    </div>
+    
+    <div class="flex justify-center gap-2 flex-wrap" id="thumbnails">
+      {images.map((image, index) => (
+        <button 
+          class="w-16 h-16 p-0 rounded-lg overflow-hidden border-2 border-transparent hover:border-[#dfbd9d] transition-colors duration-300 thumb-btn"
+          data-index={index}
+          aria-label={`View image ${index + 1}`}
+        >
+          <img 
+            src={image} 
+            alt={`${title} thumbnail ${index + 1}`} 
+            class="w-full h-full object-cover"
+          />
+        </button>
+      ))}
+    </div>
+    
+    <div class="absolute top-1/2 left-0 right-0 -translate-y-1/2 flex justify-between pointer-events-none px-4">
+      <button 
+        class="nav-btn prev bg-white/80 hover:bg-[#dfbd9d]/90 hover:text-white w-10 h-10 rounded-full flex items-center justify-center text-xl transition-colors duration-300 pointer-events-auto shadow-md"
+        aria-label="Previous image"
+      >
+        ←
+      </button>
+      <button 
+        class="nav-btn next bg-white/80 hover:bg-[#dfbd9d]/90 hover:text-white w-10 h-10 rounded-full flex items-center justify-center text-xl transition-colors duration-300 pointer-events-auto shadow-md"
+        aria-label="Next image"
+      >
+        →
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  function setupGallery() {
+    const container = document.getElementById('slider-container');
+    if (!container) return;
+
+    const mainImage = container.querySelector('#mainImage');
+    const thumbBtns = container.querySelectorAll('.thumb-btn');
+    const prevBtn = container.querySelector('.prev');
+    const nextBtn = container.querySelector('.next');
+    let currentIndex = 0;
+
+    function updateImage(index) {
+      if (!mainImage || !thumbBtns.length) return;
+      
+      const thumbImg = thumbBtns[index].querySelector('img');
+      if (!thumbImg) return;
+
+      mainImage.src = thumbImg.src;
+      thumbBtns.forEach(btn => btn.classList.remove('border-[#e6956c]'));
+      thumbBtns[index].classList.add('border-[#e6956c]');
+      currentIndex = index;
+    }
+
+    // Event listeners para los thumbnails
+    thumbBtns.forEach((btn, index) => {
+      btn.addEventListener('click', () => updateImage(index));
+    });
+
+    // Event listeners para los botones de navegación
+    prevBtn?.addEventListener('click', () => {
+      const newIndex = (currentIndex - 1 + thumbBtns.length) % thumbBtns.length;
+      updateImage(newIndex);
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      const newIndex = (currentIndex + 1) % thumbBtns.length;
+      updateImage(newIndex);
+    });
+
+    // Autoplay
+    let autoplayInterval;
+
+    function startAutoplay() {
+      autoplayInterval = setInterval(() => {
+        const newIndex = (currentIndex + 1) % thumbBtns.length;
+        updateImage(newIndex);
+      }, 3000);
+    }
+
+    function stopAutoplay() {
+      clearInterval(autoplayInterval);
+    }
+
+    updateImage(0);
+    startAutoplay();
+
+    container.addEventListener('mouseenter', stopAutoplay);
+    container.addEventListener('mouseleave', startAutoplay);
+  }
+
+  // Ejecutar cuando el DOM está listo
+  document.addEventListener('DOMContentLoaded', setupGallery);
+
+  // Ejecutar cuando Astro hace una navegación
+  document.addEventListener('astro:page-load', setupGallery);
+</script>

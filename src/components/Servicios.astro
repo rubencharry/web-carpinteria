@@ -1,0 +1,51 @@
+---
+const servicios = [
+  {
+    imagen: "/img/iconos-servicios/Bibliotecas.png"
+  },
+  {
+    imagen: "/img/iconos-servicios/Camas.png"
+  },
+  {
+    imagen: "/img/iconos-servicios/Centro-de-entretenimiento.png"
+  },
+  {
+    imagen: "/img/iconos-servicios/Closets.png"
+  },
+  {
+    imagen: "/img/iconos-servicios/Cocinas.png"
+  },
+  {
+    imagen: "/img/iconos-servicios/Escritorios.png"
+  },
+  {
+    imagen: "/img/iconos-servicios/Muebles-de-baño.png"
+  },
+  {
+    imagen: "/img/iconos-servicios/Puertas.png"
+  }
+];
+---
+
+<section class="py-10 px-4">
+  <h2 class="text-3xl text-wood-dark font-semibold text-center">Nuestros Servicios</h2>
+  <div class="max-w-7xl mx-auto">    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {servicios.map((servicio) => (
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden transition-transform duration-300 hover:-translate-y-1 flex items-center justify-center p-4">
+          <img 
+            src={servicio.imagen} 
+            alt="Servicio de carpintería"
+            class="w-60 h-60 object-contain transition-transform duration-300 hover:scale-105"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    grid-auto-rows: 1fr;
+  }
+</style>

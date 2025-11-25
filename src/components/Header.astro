@@ -1,0 +1,133 @@
+---
+import Instagram from "../../utils/icons/instagram.astro";
+import Facebook from "../../utils/icons/facebook.astro";
+import YouTube from "../../utils/icons/youtube.astro";
+import Direccion from "../../utils/icons/direccion.astro";
+---
+
+<header class="bg-[#dfbd9d] shadow-lg sticky top-0 z-50">
+  <!-- Topbar -->
+  <div
+    class="container mx-auto px-4 py-2 flex flex-col sm:flex-row items-center justify-between text-wood-medium text-xs gap-2 sm:gap-0"
+  >
+    <div class="flex items-center gap-3">
+      <Instagram />
+      <Facebook />
+      <YouTube />
+    </div>
+    <Direccion direccion="Calle 69 D#111C -52 Bogotá" />
+  </div>
+
+  <!-- Barra principal -->
+  <nav class="relative bg-wood-light">
+    <!-- Logo centrado (solo desktop) -->
+    <div
+      class="absolute inset-x-0 -top-9 hidden md:flex justify-center pointer-events-none"
+    >
+      <img
+        src="/img/logos/Logo.png"
+        alt="Logo ADM"
+        class="h-20 md:h-28 w-auto rounded-full bg-wood-light shadow"
+      />
+    </div>
+
+    <div
+      class="container mx-auto px-4 py-4 grid grid-cols-3 items-center"
+    >
+      <!-- Logo móvil (izquierda) -->
+      <div class="md:hidden flex items-center">
+        <img
+          src="/img/logos/Logo.png"
+          alt="Logo ADM"
+          class="h-20 w-auto rounded-full bg-wood-light shadow"
+        />
+      </div>
+
+      <!-- Enlaces izquierda (desktop) -->
+      <div class="hidden md:flex items-center gap-8 col-start-1">
+        <a href="#inicio" class="text-wood-dark font-medium nav-underline">Inicio</a>
+        <a href="#galeria" class="text-wood-dark font-medium nav-underline">Galería</a>
+        <a href="#clientes" class="text-wood-dark font-medium nav-underline">Clientes</a>
+      </div>
+
+      <div class="hidden md:block"></div>
+
+      <!-- Acciones derecha -->
+      <div class="flex items-center justify-end gap-3 col-span-2 md:col-span-1">
+        <button
+          class="inline-flex items-center justify-center rounded-md border bg-[#dfbd9d] px-3 py-1.5 text-wood-dark text-sm font-semibold hover:opacity-90"
+          style="border-color:#68584e66"
+        >
+          Contáctanos
+        </button>
+        <!-- Botón menú móvil -->
+        <button
+          id="mobile-menu-button"
+          class="md:hidden text-wood-dark focus:outline-none"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú móvil -->
+    <div
+      id="mobile-menu"
+      class="md:hidden hidden border-t border-[#68584e33]"
+    >
+      <div class="container mx-auto px-4 py-4 flex flex-col gap-3">
+        <a href="#inicio" class="text-wood-dark font-medium py-2 hover:text-wood-medium">Inicio</a>
+        <a href="#galeria" class="text-wood-dark font-medium py-2 hover:text-wood-medium">Galería</a>
+        <a href="#clientes" class="text-wood-dark font-medium py-2 hover:text-wood-medium">Clientes</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+<script>
+  // Funcionalidad del menú móvil
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  }
+</script>
+
+<style>
+  .nav-underline {
+    position: relative;
+    display: inline-block;
+  }
+
+  .nav-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    transition: width 250ms ease;
+  }
+
+  .nav-underline:hover::after,
+  .nav-underline:focus-visible::after {
+    width: 100%;
+  }
+</style>
