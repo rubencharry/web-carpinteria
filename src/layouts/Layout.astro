@@ -6,6 +6,7 @@ import Header from "../components/Header.astro";
 import MiniBanner from "../components/Banner-mini.astro";
 import Presentation from '../components/Presentation.astro';
 import Slider from "../components/Slider.astro";
+import PorQueElegirnos from "../components/PorQueElegirnos.astro";
 import Servicios from "../components/Servicios.astro";
 
 ---
@@ -25,17 +26,11 @@ import Servicios from "../components/Servicios.astro";
   </head>
   <body>
     <Header />
-    <slot />
     <Banner />
-    <slot />
     <Servicios />
-    <slot />
-    <MiniBanner />
-    <slot />
+    <PorQueElegirnos />
     <Presentation />
-    <slot />
     <Slider />
-    <slot />
     <Footer />
   </body>
 </html>
