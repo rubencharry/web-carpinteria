@@ -1,10 +1,56 @@
 ---
+
 ---
 
-<section class="w-full  mx-auto">
-  <img 
-    src="/img/banner/banner.png" 
-    alt="Banner de servicios de carpintería y diseño de interiores"
-    class="w-full h-auto object-cover" 
+<section
+  class="relative w-full mx-auto h-[480px] sm:h-[520px] lg:h-[640px] overflow-hidden"
+>
+  <img
+    src="/img/banner/banner.png"
+    alt="Banner carpintería y diseño de interiores"
+    class="absolute inset-0 w-full h-full object-cover opacity-80"
   />
+
+  <!-- Contenido del banner -->
+  <div
+    class="relative z-10 h-full flex justify-center items-center px-4 sm:px-8 md:px-12"
+  >
+    <div
+      class="bg-white/15 text-center px-6 py-8 sm:px-10 sm:py-12 rounded-3xl shadow-lg backdrop-blur-sm w-full max-w-5xl mx-auto banner-fade"
+    >
+      <h1
+        class="text-2xl sm:text-3xl text-black md:text-5xl font-bold mb-4 leading-tight"
+      >
+        Diseñamos y creamos tus espacios eficientes
+      </h1>
+      <p class="text-base sm:text-lg text-white md:text-xl font-light mb-6">
+        Con nuestra asesoría en <strong>carpintería personalizada</strong> y el <strong>servicio de diseño de interiores</strong> 
+        (residencial, comercial, consultorios, oficinas y hotelería) damos vida a tus proyectos. 
+        Te garantizamos soluciones funcionales y estéticas que maximizan cada espacio.
+      </p>
+      <a
+        href="#contacto"
+        class="bg-[#605be5] hover:bg-[#847bff] text-white font-semibold px-6 py-3 rounded-md w-fit transition text-sm sm:text-base"
+      >
+        Contáctanos
+      </a>
+    </div>
+  </div>
 </section>
+
+<style>
+  .banner-fade {
+    animation: bannerFadeIn 1s ease-out both;
+  }
+
+  @keyframes bannerFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
