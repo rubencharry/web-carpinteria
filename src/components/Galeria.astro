@@ -1,0 +1,55 @@
+---
+// Array de imágenes para la galería
+const imagenes = [
+    { src: "/img/galeria/img-1.jpg", alt: "Proyecto de carpintería 1" },
+    { src: "/img/galeria/img-2.jpg", alt: "Proyecto de carpintería 2" },
+    { src: "/img/galeria/img-3.jpg", alt: "Proyecto de carpintería 3" },
+    { src: "/img/galeria/img-4.jpeg", alt: "Mesa de carpintería" },
+    { src: "/img/galeria/img-5.jpeg", alt: "Silla de carpintería" },
+    { src: "/img/galeria/img-6.jpg", alt: "Silla de carpintería 2" },
+    { src: "/img/galeria/img-7.jpg", alt: "Silla cómoda de carpintería" },
+    { src: "/img/galeria/img-8.jpg", alt: "Proyecto de carpintería 4" },
+    { src: "/img/galeria/img-9.jpg", alt: "Proyecto de carpintería 5" },
+    { src: "/img/galeria/img-10.jpg", alt: "Proyecto de carpintería 6" },
+    { src: "/img/galeria/img-11.jpg", alt: "Proyecto de carpintería 7" },
+    { src: "/img/galeria/img-12.jpg", alt: "Proyecto de carpintería 8" },
+    { src: "/img/galeria/img-15.jpg", alt: "Proyecto de carpintería 11" },
+    { src: "/img/galeria/img-17.jpg", alt: "Proyecto de carpintería 13" },
+    { src: "/img/galeria/img-18.jpg", alt: "Proyecto de carpintería 14" },
+    { src: "/img/galeria/img-19.jpg", alt: "Proyecto de carpintería 15" },
+    { src: "/img/galeria/img-20.jpg", alt: "Proyecto de carpintería 16" },
+
+];
+---
+
+<section class="w-full py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8 text-wood-dark">
+      Nuestra Galería
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {
+        imagenes.map((imagen) => (
+          <div class="relative w-full aspect-square overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 group">
+            <img
+              src={imagen.src}
+              alt={imagen.alt}
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Asegurar que la sección ocupe todo el ancho */
+  section {
+    width: 100%;
+    box-sizing: border-box;
+  }
+</style>
